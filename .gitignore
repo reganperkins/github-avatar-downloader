@@ -1,6 +1,6 @@
 # private keys
 secrets.js
-
+avatars/*
 # Logs
 logs
 *.log
