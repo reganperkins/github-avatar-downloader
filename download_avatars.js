@@ -7,9 +7,24 @@ const repoName = args[1];
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
-function sortContributors(err, data) {
-  console.log('Errors:', err);
-  console.log('Result:', data);
+function contributorsAvatarURL(err, data, body) {
+  if (err) {
+    console.warn('error:', err);
+    return;
+  }
+
+  const contributors = JSON.parse(body);
+  for (contributor of contributors) {
+    // console.log(contributor.avatar_url)
+    downloadImageByURL(contributor.avatar_url, `./avatars/${contributor.login}`);
+  }
+}
+
+function downloadImageByURL(url, filePath) {
+  request(url)
+    .on('data', (data) => {
+      console.log(data)
+    })
 }
 
 function getRepoContributors(owner, name, cb) {
@@ -22,8 +37,8 @@ function getRepoContributors(owner, name, cb) {
   };
 
   request(options, (err, res, body) => {
-    cb(err, res);
+    cb(err, res, body);
   });
 }
 
-getRepoContributors(repoOwner, repoName, sortContributors);
+getRepoContributors(repoOwner, repoName, contributorsAvatarURL);
