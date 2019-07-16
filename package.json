@@ -9,6 +9,7 @@
   "author": "regan little",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "request": "^2.88.0"
   }
 }
