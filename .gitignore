@@ -1,6 +1,8 @@
 # private keys
 secrets.js
 avatars/*
+!avatars/.gitkeep
+
 # Logs
 logs
 *.log
