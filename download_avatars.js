@@ -56,8 +56,10 @@ function init() {
   if (args.length !== 2) {
     throw new Error('incorrect number of arguments where supplied. A repo owner and name should be provided');
   }
-  if (!fs.existsSync('./.env')) {
-    throw new Error('you have not set up a .env file');
+  const filePath = './.env';
+  if (!fs.existsSync(filePath)) {
+    fs.openSync(filePath, 'a');
+    throw new Error('you have not set up a .env file, please add your GITHUB_TOKEN to the .env file');
   }
   if (!process.env.GITHUB_TOKEN) {
     throw new Error('you must add your GITHUB_TOKEN to .env');

@@ -2,7 +2,6 @@
 secrets.js
 .env
 avatars/*
-!avatars/.gitkeep
 
 .DS_Store
 
