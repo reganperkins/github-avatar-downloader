@@ -29,6 +29,9 @@ function contributorsAvatarURL(err, data, body) {
   }
 
   const contributors = JSON.parse(body);
+  if (contributors.message === 'Not Found') {
+    throw new Error('Not found, check the right repository owner and name was provided');
+  }
   contributors.forEach((contributor) => {
     downloadImageByURL(contributor.avatar_url, `${destinationPath}/${contributor.login}.jpg`);
   });
